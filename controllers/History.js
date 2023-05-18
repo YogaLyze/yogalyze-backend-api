@@ -17,13 +17,13 @@ export const addHistory = async (req, res) => {
 };
 
 export const getHistoryByUserId = async (req, res) => {
-    const user_id = req.body;
     try{
-        const user_history = History.findAll({
+        const user_history = await History.findAll({
             where: {
-                user_id : user_id
+                user_id : req.params.id
             }
         });
+        console.log(user_history);
         res.json(user_history);
     } catch(error){
         console.log(error);
