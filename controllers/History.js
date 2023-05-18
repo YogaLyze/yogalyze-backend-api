@@ -16,7 +16,7 @@ export const addHistory = async (req, res) => {
     }
 };
 
-export const getHistoryById = async (req, res) => {
+export const getHistoryByUserId = async (req, res) => {
     const user_id = req.body;
     try{
         const user_history = History.findAll({
