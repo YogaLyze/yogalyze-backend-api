@@ -1,5 +1,5 @@
 // import Users from '../models/UserModel.js';
-import { Users } from '../models/index.js';
+import { History, Users } from '../models/index.js';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
@@ -16,7 +16,13 @@ export const register = async (req, res) => {
     });
     if (userExist) {
       await userExist.restore();
-      
+
+      await History.restore({
+        where: {
+          userId: userExist.id,
+        },
+      });
+
       return res.status(201).json({ msg: 'User restored' });
     }
     await Users.create({

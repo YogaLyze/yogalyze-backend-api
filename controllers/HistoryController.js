@@ -8,7 +8,7 @@ export const addHistory = async (req, res) => {
       yoga_pose: yoga_pose,
       score: score,
       date: date,
-      user_id: req.user.userId,
+      userId: req.user.userId,
     });
     res.json({ msg: 'history added' });
   } catch (error) {
@@ -20,7 +20,7 @@ export const getHistoryByUserId = async (req, res) => {
     try{
         const user_history = await History.findAll({
             where: {
-                user_id : req.params.id
+                userId : req.params.id
             }
         });
         res.json(user_history);

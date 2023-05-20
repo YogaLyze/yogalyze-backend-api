@@ -3,11 +3,11 @@ import History from './HistoryModel.js';
 
 Users.hasMany(History, {
   onDelete: 'cascade',
-  hooks: true,
+  hooks: true
 });
 
 History.belongsTo(Users, {
-  hooks: true,
+  foreignKey: 'userId',
 });
 
 export { Users, History };
