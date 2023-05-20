@@ -1,25 +1,31 @@
 import { Sequelize } from 'sequelize';
 import db from '../config/database.js';
+import Users from './UserModel.js';
 
 const { DataTypes } = Sequelize;
 
 const History = db.define(
   'history',
   {
-    user_id: {
-      type: DataTypes.BIGINT,
-    },
-    yogaType: {
+    yoga_type: {
       type: DataTypes.STRING,
+      allowNull: false,
+    },
+    yoga_pose: {
+      type: DataTypes.STRING,
+      allowNull: false,
     },
     score: {
       type: DataTypes.INTEGER,
+      allowNull: false,
     },
     date: {
       type: DataTypes.DATE,
-    }
+      allowNull: false,
+    },
   },
   {
+    paranoid: true,
     freezeTableName: true,
   }
 );

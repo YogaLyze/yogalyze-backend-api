@@ -1,19 +1,19 @@
 import History from "../models/HistoryModel.js";
 
 export const addHistory = async (req, res) => {
-    const {user_id, yogaType, score, date} = req.body;
-
-    try {
-        History.create({
-            user_id : user_id,
-            yogaType: yogaType,
-            score : score,
-            date : date,
-        });
-        res.json({msg: 'history added'});
-    } catch(error){
-        console.log(error);
-    }
+  const { yoga_type, yoga_pose, score, date } = req.body;
+  try {
+    History.create({
+      yoga_type: yoga_type,
+      yoga_pose: yoga_pose,
+      score: score,
+      date: date,
+      user_id: req.user.userId,
+    });
+    res.json({ msg: 'history added' });
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 export const getHistoryByUserId = async (req, res) => {
@@ -23,7 +23,6 @@ export const getHistoryByUserId = async (req, res) => {
                 user_id : req.params.id
             }
         });
-        console.log(user_history);
         res.json(user_history);
     } catch(error){
         console.log(error);

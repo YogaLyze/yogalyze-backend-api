@@ -1,4 +1,5 @@
-import Users from '../models/UserModel.js';
+// import Users from '../models/UserModel.js';
+import { Users } from '../models/index.js';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
@@ -9,9 +10,13 @@ export const register = async (req, res) => {
   const salt = await bcrypt.genSalt();
   const hashPassword = await bcrypt.hash(password, salt);
   try {
-    const userExist = await Users.findOne({ email });
+    const userExist = await Users.findOne({
+      where: { email: email },
+      paranoid: false,
+    });
     if (userExist) {
-      return res.status(400).json({ msg: 'User already exists' });
+      await userExist.restore();
+      return res.status(201).json({ msg: 'User restored' });
     }
     await Users.create({
       name: name,
@@ -25,7 +30,6 @@ export const register = async (req, res) => {
 };
 
 export const login = async (req, res) => {
-
   try {
     const user = await Users.findAll({
       where: {
@@ -63,7 +67,7 @@ export const login = async (req, res) => {
     );
     res.cookie('refreshToken', refreshToken, {
       httpOnly: true,
-      maxAge: 24 * 60 * 60 * 1000
+      maxAge: 24 * 60 * 60 * 1000,
     });
     res.json({ accessToken });
   } catch (error) {
