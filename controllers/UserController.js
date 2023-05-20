@@ -1,4 +1,5 @@
 import Users from '../models/UserModel.js';
+import History from '../models/HistoryModel.js';
 
 export const getUsers = async (req, res) => {
   try {
@@ -34,12 +35,28 @@ export const updateUser = async (req, res) => {
 
 export const deleteUser = async (req, res) => {
   try {
+    await History.destroy({
+      where: {
+        userId: req.user.userId,
+      },
+    });
+
+    await Users.update(
+      { refresh_token: null },
+      {
+        where: {
+          id: req.user.userId,
+        },
+      }
+    );
+
     await Users.destroy({
       where: {
         id: req.user.userId,
       },
     });
-    res.status(200).json("User deleted")
+
+    res.status(200).json('User deleted');
   } catch (error) {
     console.log(error);
   }

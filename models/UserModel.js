@@ -1,6 +1,5 @@
 import { Sequelize } from 'sequelize';
 import db from '../config/database.js';
-import History from './HistoryModel.js';
 
 const { DataTypes } = Sequelize;
 

@@ -16,6 +16,7 @@ export const register = async (req, res) => {
     });
     if (userExist) {
       await userExist.restore();
+      
       return res.status(201).json({ msg: 'User restored' });
     }
     await Users.create({
