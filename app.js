@@ -31,5 +31,5 @@ app.use('/user', UserRoute);
 app.use('/history', HistoryRoute);
 
 app.listen(process.env.PORT, () => {
-  console.log(`Listening on http://locahost:${process.env.PORT}`);
+  console.log(`Listening on http://localhost:${process.env.PORT}`);
 });
