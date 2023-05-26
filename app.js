@@ -6,7 +6,7 @@ import db from './config/database.js';
 import AuthRoute from './routes/AuthRoute.js';
 import UserRoute from './routes/UserRoute.js';
 import HistoryRoute from './routes/HistoryRoute.js';
-
+import ReminderRoute from './routes/ReminderRoute.js';
 dotenv.config();
 const app = express();
 
@@ -29,6 +29,7 @@ app.use(express.json());
 app.use('/auth', AuthRoute);
 app.use('/user', UserRoute);
 app.use('/history', HistoryRoute);
+app.use('/reminder', ReminderRoute);
 
 app.listen(process.env.PORT, () => {
   console.log(`Listening on http://localhost:${process.env.PORT}`);
