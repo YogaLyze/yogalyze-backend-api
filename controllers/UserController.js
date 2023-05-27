@@ -14,7 +14,7 @@ export const getUsers = async (req, res) => {
 
 export const updateUser = async (req, res) => {
   const { age, gender, height, weight } = req.body;
-  console.log(req.user);
+  
   try {
     const user = await Users.update(
       {
@@ -27,7 +27,7 @@ export const updateUser = async (req, res) => {
         where: { id: req.user.userId },
       }
     );
-    res.status(200).json(user);
+    res.status(200).json(req.user);
   } catch (error) {
     console.log(error);
   }
