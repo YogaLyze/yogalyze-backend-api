@@ -11,7 +11,7 @@ Endpoint: `/auth/register`
   "name": "fulan",
   "email": "fulan@example.com",
   "password": "fulan123",
-  "confirmpass": "fulan 123"
+  "confirmpass": "fulan123"
 }
 ```
 
