@@ -54,19 +54,26 @@ Endpoint: `/auth/logout`
 }
 ```
 
-### GET USERS
+### GET USER
 
-Endpoint: `/user/`
+Endpoint: `/user/profile`
 
 @body response:
 
 ```json
-{}
+{
+  "name": "fulan",
+  "email": "fulan@example.com",
+  "age": 17,
+  "gender": "Male",
+  "height": 178.0,
+  "weight": 50.0
+}
 ```
 
 ### UPDATE USER
 
-Endpoint: `/user/`
+Endpoint: `/user/update`
 
 @body request:
 
@@ -83,37 +90,19 @@ Endpoint: `/user/`
 
 ```json
 {
-  "status": 200,
-  "user": {
-    "name": "fulan",
-    "email": "fulan@example.com",
-    "password": "fulan123",
-    "age": 17,
-    "gender": "Male",
-    "height": 178.0,
-    "weight": 50.0
-  }
+  "msg": "User Updated"
 }
 ```
 
 ### DELETE USER
 
-Endpoint: `/user/`
-
-@body request:
-
-```json
-{
-  "userId": 1
-}
-```
+Endpoint: `/user/delete`
 
 @body response:
 
 ```json
 {
-  "status": 200,
-  "msg": "User deleted"
+  "msg": "User Deleted"
 }
 ```
 
@@ -125,10 +114,10 @@ Endpoint: `/history/add`
 
 ```json
 {
-  "yoga_type": "example",
-  "yoga_pose": "pose_example",
+  "yoga_type": "Chest Pain",
+  "yoga_pose": "Downward Dog Pose",
   "score": 100,
-  "date": "2020-12-12"
+  "date": "2023-03-03T00:00:00.000Z"
 }
 ```
 
@@ -136,22 +125,22 @@ Endpoint: `/history/add`
 
 ```json
 {
-  "msg": "history added"
+  "msg": "History Added"
 }
 ```
 
 ### GET HISTORY
 
-Endpoint:`/history/:id`
+Endpoint:`/history/user`
 
 @body response:
 
 ```json
 {
-  "yoga_type": "example",
-  "yoga_pose": "pose_example",
+  "yoga_type": "Chest Pain",
+  "yoga_pose": "Downward Dog Pose",
   "score": 100,
-  "date": "2020-12-12"
+  "date": "2023-03-03T00:00:00.000Z"
 }
 ```
 
@@ -170,8 +159,7 @@ Endpoint: `/reminder/add`
   "isFriday": 1,
   "isSaturday": 0,
   "isSunday": 1,
-  "time_hour": "13:00",
-  "userId": 1
+  "time_hour": "13:00:00"
 }
 ```
 
@@ -179,13 +167,13 @@ Endpoint: `/reminder/add`
 
 ```json
 {
-  "msg": "reminder added"
+  "msg": "Reminder Added"
 }
 ```
 
 ### GET REMINDER
 
-Endpoint: `/reminder/:id`
+Endpoint: `/reminder/user`
 
 @body_response:
 
@@ -198,14 +186,13 @@ Endpoint: `/reminder/:id`
   "isFriday": 1,
   "isSaturday": 0,
   "isSunday": 1,
-  "time_hour": "13:00",
-  "userId": 1
+  "time_hour": "13:00:00"
 }
 ```
 
 ### UPDATE REMINDER
 
-Endpoint: `/reminder/:id`
+Endpoint: `/reminder/update`
 
 @body_request:
 
@@ -218,7 +205,7 @@ Endpoint: `/reminder/:id`
   "isFriday": 1,
   "isSaturday": 0,
   "isSunday": 1,
-  "time_hour": "13:00"
+  "time_hour": "11:00:00"
 }
 ```
 
@@ -226,6 +213,6 @@ Endpoint: `/reminder/:id`
 
 ```json
 {
-  "msg": "reminder updated"
+  "msg": "Reminder Updated"
 }
 ```

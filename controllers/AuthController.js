@@ -32,7 +32,7 @@ export const register = async (req, res) => {
     });
     res.json({ msg: 'Register Success' });
   } catch (error) {
-    console.log(error);
+    res.status(500).json({ msg: error });
   }
 };
 
@@ -61,7 +61,7 @@ export const login = async (req, res) => {
       { userId, name, email },
       process.env.REFRESH_TOKEN_SECRET,
       {
-        expiresIn: '3d',
+        expiresIn: '1d',
       }
     );
     await Users.update(
@@ -78,7 +78,7 @@ export const login = async (req, res) => {
     });
     res.json({ accessToken });
   } catch (error) {
-    res.status(404).json({ msg: 'Email not found' });
+    res.status(404).json({ msg: error });
   }
 };
 

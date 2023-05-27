@@ -16,7 +16,6 @@ const Users = db.define(
     },
     password: {
       type: DataTypes.STRING,
-      allowNull: false,
     },
     age: {
       type: DataTypes.INTEGER,

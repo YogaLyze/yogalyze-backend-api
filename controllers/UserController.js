@@ -1,22 +1,25 @@
 import Users from '../models/UserModel.js';
 import History from '../models/HistoryModel.js';
 
-export const getUsers = async (req, res) => {
+export const getUser = async (req, res) => {
   try {
-    const users = await Users.findAll({
-      attributes: ['id', 'name', 'email'],
+    const user = await Users.findAll({
+      attributes: ['name', 'email', 'age', 'gender', 'height', 'weight'],
+      where: {
+        id: req.user.userId,
+      },
     });
-    res.json(users.filter((user) => user.email === req.user.email));
+    res.status(200).json(user);
   } catch (error) {
-    console.log(error);
+    res.status(500).json({ msg: error });
   }
 };
 
 export const updateUser = async (req, res) => {
   const { age, gender, height, weight } = req.body;
-  
+
   try {
-    const user = await Users.update(
+    await Users.update(
       {
         age: age,
         gender: gender,
@@ -27,9 +30,9 @@ export const updateUser = async (req, res) => {
         where: { id: req.user.userId },
       }
     );
-    res.status(200).json(req.user);
+    res.status(200).json({ msg: 'User Updated' });
   } catch (error) {
-    console.log(error);
+    res.status(500).json({ msg: error });
   }
 };
 
@@ -56,8 +59,8 @@ export const deleteUser = async (req, res) => {
       },
     });
 
-    res.status(200).json('User deleted');
+    res.status(200).json({ msg: 'User Deleted' });
   } catch (error) {
-    console.log(error);
+    res.status(500).json({ msg: error });
   }
 };
