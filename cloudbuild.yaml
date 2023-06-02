@@ -4,7 +4,14 @@ steps:
     args: ["install"]
   - name: node:16
     entrypoint: npm
-    args: ["test"]
+    args: ["start"]
+  - name: node:10.15.1
+    entrypoint: npm
+    args: ["run", "create-env"]
+    env:
+      - "ACCESS_TOKEN_SECRET=${_ACCESS_TOKEN_SECRET}"
+      - "REFRESH_TOKEN_SECRET=${_REFRESH_TOKEN_SECRET}"
+      - "PORT=${_PORT}"
   - name: node:16
     entrypoint: npm
     args: ["run", "build"]
