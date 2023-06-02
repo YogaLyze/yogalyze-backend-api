@@ -31,6 +31,4 @@ app.use('/user', UserRoute);
 app.use('/history', HistoryRoute);
 app.use('/reminder', ReminderRoute);
 
-app.listen(process.env.PORT, () => {
-  console.log(`Listening on http://localhost:${process.env.PORT}`);
-});
+app.listen(process.env.PORT);
