@@ -22,6 +22,10 @@ const History = db.define(
       type: DataTypes.DATE,
       allowNull: false,
     },
+    userId: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
   },
   {
     paranoid: true,

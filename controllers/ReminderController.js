@@ -21,7 +21,7 @@ export const addReminder = async (req, res) => {
       isSaturday: isSaturday,
       isSunday: isSunday,
       time_hour: time_hour,
-      userId: req.user.userId,
+      userId: decodeValue.uid,
     });
     res.status(200).json({ msg: 'Reminder Added' });
   } catch (error) {
@@ -43,7 +43,7 @@ export const getReminders = async (req, res) => {
         'time_hour',
       ],
       where: {
-        userId: req.user.userId,
+        userId: req.user.uid,
       },
     });
     res.status(200).json(user_schedule);
@@ -76,7 +76,7 @@ export const updateReminder = async (req, res) => {
         time_hour: time_hour,
       },
       {
-        where: { id: req.user.userId },
+        where: { id: req.user.uid },
       }
     );
     res.status(200).json({ msg: 'Reminder Updated' });

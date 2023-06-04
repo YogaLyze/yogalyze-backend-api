@@ -9,9 +9,8 @@ steps:
     entrypoint: npm
     args: ["run", "create-env"]
     env:
-      - "ACCESS_TOKEN_SECRET="
-      - "REFRESH_TOKEN_SECRET="
       - "PORT=${_PORT}"
+      - "SECRET=${_SECRET}"
   - name: node:16
     entrypoint: npm
     args: ["run", "build"]
