@@ -1,5 +1,11 @@
 import admin from 'firebase-admin';
-import serviceAccount from './secret.json' assert { type: 'json' };
+import dotenv from 'dotenv';
+dotenv.config();
+
+
+console.log(process.env.SECRET)
+
+const serviceAccount = JSON.parse(process.env.SECRET);
 
 const app = admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
