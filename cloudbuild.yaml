@@ -10,7 +10,6 @@ steps:
     args: ["run", "create-env"]
     env:
       - "PORT=${_PORT}"
-      - "SECRET=$_SECRET"
   - name: node:16
     entrypoint: npm
     args: ["run", "build"]
