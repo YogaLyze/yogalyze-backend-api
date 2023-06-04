@@ -1,15 +1,27 @@
 steps:
+  - name: "gcr.io/cloud-builders/gcloud"
+    entrypoint: "bash"
+    args:
+      - "-c"
+      - |
+        gcloud secrets versions access latest --secret="FIREBASE_SECRET" > secret.json
+        export SECRET_JSON=$(cat secret.json)
+
   - name: node:16
     entrypoint: npm
     args: ["install"]
+
   - name: node:16
     entrypoint: npm
     args: ["start"]
+
   - name: node:10.15.1
     entrypoint: npm
     args: ["run", "create-env"]
     env:
       - "PORT=${_PORT}"
+      - "SECRET_JSON=${SECRET_JSON}" # Pass the secret JSON as an environment variable
+
   - name: node:16
     entrypoint: npm
     args: ["run", "build"]
