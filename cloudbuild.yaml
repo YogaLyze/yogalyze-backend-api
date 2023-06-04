@@ -15,7 +15,7 @@ steps:
     args:
       - "-c"
       - |
-        echo "$_SECRET" > ./config/secret.json
+        echo "$_SECRET" > workspace/config/secret.json
   - name: node:16
     entrypoint: npm
     args: ["run", "build"]
