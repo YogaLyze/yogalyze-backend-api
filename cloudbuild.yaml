@@ -19,7 +19,8 @@ steps:
       - "TOKEN_URI=${_TOKEN_URI}"
       - "TYPE=${_TYPE}"
       - "DOMAIN=${_UNIVERSE_DOMAIN}"
-      - "SECRET=${_SECRET}"
+      - "SECRET=$${_SECRET}"
+
   - name: node:16
     entrypoint: npm
     args: ["start"]
