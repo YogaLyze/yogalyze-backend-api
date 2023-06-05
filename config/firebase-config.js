@@ -17,6 +17,7 @@ dotenv.config();
 // };
 serviceAccount = JSON.parse(process.env.SECRET);
 
+console.log("PORT: ", process.env.PORT)
 console.log(JSON.stringify(serviceAccount));
 
 const app = admin.initializeApp({
