@@ -1,12 +1,4 @@
 steps:
-  - name: "gcr.io/cloud-builders/gcloud"
-    entrypoint: "bash"
-    args:
-      - "-c"
-      - |
-        gcloud secrets versions access latest --secret="FIREBASE_SECRET" > secret.json
-        export SECRET_JSON=$(cat secret.json)
-
   - name: node:16
     entrypoint: npm
     args: ["install"]
@@ -20,7 +12,17 @@ steps:
     args: ["run", "create-env"]
     env:
       - "PORT=${_PORT}"
-      - "SECRET_JSON=${SECRET_JSON}" # Pass the secret JSON as an environment variable
+      - "AUTH_PROV=${_AUTH_PROV}"
+      - "AUTH_URI=${_AUTH_URI}"
+      - "CLIENT_CERT=${_CLIENT_CERT}"
+      - "CLIENT_ID=${_CLIENT_ID}"
+      - "EMAIL=${_EMAIL}"
+      - "PRIVATE_KEY=${_PRIVATE_KEY}"
+      - "PRIVATE_KEY_ID=${_PRIVATE_KEY_ID}"
+      - "PROJECT_ID=${_PROJECT_ID}"
+      - "TOKEN_URI=${_TOKEN_URI}"
+      - "TYPE=${_TYPE}"
+      - "DOMAIN=${_UNIVERSE_DOMAIN}"
 
   - name: node:16
     entrypoint: npm
