@@ -16,13 +16,13 @@ dotenv.config();
 
 // };
 console.log("PORT: ", process.env.PORT)
-console.log(JSON.stringify(serviceAccount));
-serviceAccount = JSON.parse(process.env.SECRET);
+console.log(JSON.stringify(process.env.SECRET));
+
 
 
 
 const app = admin.initializeApp({
-  credential: admin.credential.cert(JSON.parse(JSON.stringify(serviceAccount))),
+  credential: admin.credential.cert(process.env.SECRET),
 });
 
 export default app;
