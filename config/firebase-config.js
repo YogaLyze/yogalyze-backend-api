@@ -1,5 +1,6 @@
 import admin from 'firebase-admin';
-
+import dotenv from 'dotenv';
+dotenv.config();
 const serviceAccount = {
   type: process.env.TYPE,
   project_id: process.env.PROJECT_ID,
@@ -13,7 +14,9 @@ const serviceAccount = {
   client_x509_cert_url:process.env.CLIENT_CERT,
   universe_domain:process.env.DOMAIN
 
-}
+};
+
+console.log(JSON.stringify(serviceAccount));
 
 const app = admin.initializeApp({
   credential: admin.credential.cert(JSON.parse(JSON.stringify(serviceAccount))),
