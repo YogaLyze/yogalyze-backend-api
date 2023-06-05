@@ -15,10 +15,11 @@ dotenv.config();
 //   universe_domain:process.env.DOMAIN
 
 // };
-serviceAccount = JSON.parse(process.env.SECRET);
-
 console.log("PORT: ", process.env.PORT)
 console.log(JSON.stringify(serviceAccount));
+serviceAccount = JSON.parse(process.env.SECRET);
+
+
 
 const app = admin.initializeApp({
   credential: admin.credential.cert(JSON.parse(JSON.stringify(serviceAccount))),

@@ -1,23 +1,4 @@
 steps:
-  - name: "gcr.io/cloud-builders/gcloud"
-    entrypoint: "bash"
-    args:
-      - "-c"
-      - |
-        echo "PORT=${_PORT}" > .env
-        echo "AUTH_PROV=${_AUTH_PROV}" >> .env
-        echo "AUTH_URI=${_AUTH_URI}" >> .env
-        echo "CLIENT_CERT=${_CLIENT_CERT}" >> .env
-        echo "CLIENT_ID=${_CLIENT_ID}" >> .env
-        echo "EMAIL=${_EMAIL}" >> .env
-        echo "PRIVATE_KEY=${_PRIVATE_KEY}" >> .env
-        echo "PRIVATE_KEY_ID=${_PRIVATE_KEY_ID}" >> .env
-        echo "PROJECT_ID=${_PROJECT_ID}" >> .env
-        echo "TOKEN_URI=${_TOKEN_URI}" >> .env
-        echo "TYPE=${_TYPE}" >> .env
-        echo "DOMAIN=${_UNIVERSE_DOMAIN}" >> .env
-        echo "SECRET=${_SECRET}" >> .env
-
   - name: node:16
     entrypoint: npm
     args: ["install"]
