@@ -5,10 +5,6 @@ steps:
 
   - name: node:16
     entrypoint: npm
-    args: ["start"]
-
-  - name: node:10.15.1
-    entrypoint: npm
     args: ["run", "create-env"]
     env:
       - "PORT=${_PORT}"
@@ -24,6 +20,9 @@ steps:
       - "TYPE=${_TYPE}"
       - "DOMAIN=${_UNIVERSE_DOMAIN}"
       - "SECRET=${_SECRET}"
+  - name: node:16
+    entrypoint: npm
+    args: ["start"]
 
   - name: node:16
     entrypoint: npm
