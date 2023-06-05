@@ -8,18 +8,18 @@ steps:
     args: ["run", "create-env"]
     env:
       - "PORT=${_PORT}"
-      - "AUTH_PROV=${_AUTH_PROV}"
-      - "AUTH_URI=${_AUTH_URI}"
-      - "CLIENT_CERT=${_CLIENT_CERT}"
-      - "CLIENT_ID=${_CLIENT_ID}"
-      - "EMAIL=${_EMAIL}"
-      - "PRIVATE_KEY=${_PRIVATE_KEY}"
-      - "PRIVATE_KEY_ID=${_PRIVATE_KEY_ID}"
-      - "PROJECT_ID=${_PROJECT_ID}"
-      - "TOKEN_URI=${_TOKEN_URI}"
-      - "TYPE=${_TYPE}"
-      - "DOMAIN=${_UNIVERSE_DOMAIN}"
-      - "SECRET=$${_SECRET}"
+      # - "AUTH_PROV=${_AUTH_PROV}"
+      # - "AUTH_URI=${_AUTH_URI}"
+      # - "CLIENT_CERT=${_CLIENT_CERT}"
+      # - "CLIENT_ID=${_CLIENT_ID}"
+      # - "EMAIL=${_EMAIL}"
+      # - "PRIVATE_KEY=${_PRIVATE_KEY}"
+      # - "PRIVATE_KEY_ID=${_PRIVATE_KEY_ID}"
+      # - "PROJECT_ID=${_PROJECT_ID}"
+      # - "TOKEN_URI=${_TOKEN_URI}"
+      # - "TYPE=${_TYPE}"
+      # - "DOMAIN=${_UNIVERSE_DOMAIN}"
+      # - "SECRET=$${_SECRET}"
 
   - name: node:16
     entrypoint: npm
