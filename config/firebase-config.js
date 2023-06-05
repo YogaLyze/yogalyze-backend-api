@@ -16,7 +16,6 @@ dotenv.config();
 
 // };
 console.log("PORT: ", process.env.PORT)
-console.log("SECRET: ", $_SECRET);
 console.log("SECRET: ", process.env.SECRET);
 
 
