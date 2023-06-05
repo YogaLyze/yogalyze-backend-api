@@ -22,7 +22,7 @@ console.log("SECRET: ", process.env.SECRET);
 
 
 const app = admin.initializeApp({
-  credential: admin.credential.cert(process.env.SECRET),
+  credential: admin.credential.cert(JSON.parse(process.env.SECRET)),
 });
 
 export default app;
