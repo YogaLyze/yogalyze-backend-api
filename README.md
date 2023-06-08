@@ -1,218 +1,141 @@
-## API DOCUMENTATION
+## YogaLyze API Documentation
 
-### REGISTER
+We use **NodeJS** using the **Express Framework** to create the APIs and deploy it to **Google Cloud Platform** by using **Google App Engine** for communication with **Mobile Development**. We also use **Identity Platform** with **Firebase Auth** for User authentication and authorization based on User ID Token. The database will stored user's history and profile in **Cloud SQL**. For each URL that can be used will be explained below.
 
-Endpoint: `/auth/register`
+### Create / Update User Profile 
 
-@body request:
+Updating the user profile or create if the profile doesn't exist based on the userId in the database.
 
+URL: 
+> /user/profile
+
+Method: 
+> PUT
+
+Headers: 
+> Authorization : Bearer {token}
+
+Request Body: 
 ```json
 {
-  "name": "fulan",
-  "email": "fulan@example.com",
-  "password": "fulan123",
-  "confirmpass": "fulan123"
-}
-```
-
-@body response:
-
-```json
-{ "msg": "Register Success" }
-```
-
-### LOGIN
-
-Endpoint `/auth/login`
-
-@body request:
-
-```json
-{
-  "email": "fulan@example.com",
-  "password": "fulan123"
-}
-```
-
-@body response:
-
-```json
-{
-  "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsIm5hbWUiOiJuYXVmYWwiLCJlbWFpbCI6Im5hdWZhbEBnbWFpbC5jb20iLCJpYXQiOjE2ODUxMDIxNDIsImV4cCI6MTY4NTEwMjE2Mn0.A_18H9za7h3wbIF3VbbUITAlHuXLxTcC89ryqNeow0A"
-}
-```
-
-### LOGOUT
-
-Endpoint: `/auth/logout`
-
-@body response:
-
-```json
-{
-  "code": 200
-}
-```
-
-### GET USER
-
-Endpoint: `/user/profile`
-
-@body response:
-
-```json
-{
-  "name": "fulan",
-  "email": "fulan@example.com",
-  "age": 17,
+  "date_of_birth": 2000-01-01,
   "gender": "Male",
-  "height": 178.0,
-  "weight": 50.0
+  "height": 165.0,
+  "weight": 60.5
 }
 ```
 
-### UPDATE USER
-
-Endpoint: `/user/update`
-
-@body request:
+Response Body:
 
 ```json
 {
-  "age": 17,
-  "gender": "Male",
-  "height": 178.0,
-  "weight": 50.0
+  "msg": "Profile Updated",
+  "updated_profile": [
+    1
+  ]
 }
 ```
 
-@body response:
+### Get User Profile
+
+Get the user profile attributes based on the userId.
+
+URL: 
+> /user/profile
+
+Method: 
+> GET
+
+Headers: 
+> Authorization : Bearer {token}
+
+Response Body
 
 ```json
 {
-  "msg": "User Updated"
+  "msg": "Profile Retrieved",
+  "profile": {
+    "date_of_birth": "2003-04-04",
+    "gender": "Male",
+    "weight": 70,
+    "height": 165
+  }
 }
 ```
 
-### DELETE USER
+### Add History
 
-Endpoint: `/user/delete`
+Create history based on the user's activities and store it in the database.
 
-@body response:
+URL: 
+> /history/add
 
-```json
-{
-  "msg": "User Deleted"
-}
-```
+Method: 
+> POST
 
-### ADD HISTORY
+Headers: 
+> Authorization : Bearer {token}
 
-Endpoint: `/history/add`
-
-@body request:
+Request Body:
 
 ```json
 {
   "yoga_type": "Chest Pain",
-  "yoga_pose": "Downward Dog Pose",
-  "score": 100,
-  "date": "2023-03-03T00:00:00.000Z"
+  "yoga_pose": "Downward Cat poses",
+  "score": 80,
+  "date": "2023-03-03"
 }
 ```
 
-@body response:
+Response Body:
 
 ```json
 {
-  "msg": "History Added"
+  "msg": "History Created",
+  "created_history": {
+    "id": 6,
+    "yoga_type": "Chest Pain",
+    "yoga_pose": "Downward Cat poses",
+    "score": 80,
+    "date": "2023-03-03",
+    "userId": "nesqZpjp6IhIjwUqqTTe4PAbdeJ3",
+    "updatedAt": "2023-06-08T08:15:59.732Z",
+    "createdAt": "2023-06-08T08:15:59.732Z"
+  }
 }
 ```
 
-### GET HISTORY
+### Get User History
 
-Endpoint:`/history/user`
+Get all history based on the current user from the database that matched with the userId.
 
-@body response:
+URL: 
+> /history/user
 
-```json
-{
-  "yoga_type": "Chest Pain",
-  "yoga_pose": "Downward Dog Pose",
-  "score": 100,
-  "date": "2023-03-03T00:00:00.000Z"
-}
-```
+Method: 
+> GET
 
-### ADD REMINDER
+Headers: 
+> Authorization : Bearer {token}
 
-Endpoint: `/reminder/add`
-
-@body request:
+Response Body:
 
 ```json
 {
-  "isMonday": 0,
-  "isTuesday": 1,
-  "isWednesday": 0,
-  "isThursday": 1,
-  "isFriday": 1,
-  "isSaturday": 0,
-  "isSunday": 1,
-  "time_hour": "13:00:00"
-}
-```
-
-@body response:
-
-```json
-{
-  "msg": "Reminder Added"
-}
-```
-
-### GET REMINDER
-
-Endpoint: `/reminder/user`
-
-@body_response:
-
-```json
-{
-  "isMonday": 0,
-  "isTuesday": 1,
-  "isWednesday": 0,
-  "isThursday": 1,
-  "isFriday": 1,
-  "isSaturday": 0,
-  "isSunday": 1,
-  "time_hour": "13:00:00"
-}
-```
-
-### UPDATE REMINDER
-
-Endpoint: `/reminder/update`
-
-@body_request:
-
-```json
-{
-  "isMonday": 0,
-  "isTuesday": 1,
-  "isWednesday": 0,
-  "isThursday": 1,
-  "isFriday": 1,
-  "isSaturday": 0,
-  "isSunday": 1,
-  "time_hour": "11:00:00"
-}
-```
-
-@body_response:
-
-```json
-{
-  "msg": "Reminder Updated"
+  "msg": "History Retrieved",
+  "user_history": [
+    {
+      "yoga_type": "Chest Pain",
+      "yoga_pose": "Downward Cat poses",
+      "score": 80,
+      "date": "2023-03-03T00:00:00.000Z"
+    },
+    {
+      "yoga_type": "Back Pain",
+      "yoga_pose": "Downward Cat poses",
+      "score": 78,
+      "date": "2023-03-03T00:00:00.000Z"
+    }
+  ]
 }
 ```
