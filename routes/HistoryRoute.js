@@ -7,10 +7,7 @@ import {
 
 const router = express.Router();
 
-// POST URL/history/add -> add data history ke db
 router.post('/add', authenticateToken, addHistory);
-
-// GET URL/history/user -> get history berdasarkan auth user di db
 router.get('/user', authenticateToken, getHistories);
 
 export default router;

@@ -4,7 +4,7 @@ import db from '../config/database.js';
 const { DataTypes } = Sequelize;
 
 const History = db.define(
-  'history',
+  'histories',
   {
     yoga_type: {
       type: DataTypes.STRING,
@@ -19,7 +19,7 @@ const History = db.define(
       allowNull: false,
     },
     date: {
-      type: DataTypes.DATE,
+      type: DataTypes.DATEONLY,
       allowNull: false,
     },
     userId: {
