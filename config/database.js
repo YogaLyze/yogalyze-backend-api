@@ -1,13 +1,11 @@
 import { Sequelize } from "sequelize";
+import dotenv from 'dotenv';
+dotenv.config();
 
-const db = new Sequelize('yogalyze', 'root', 'capstone415', { 
-  host: '34.101.111.20',
-  dialect: 'mysql'
+const db = new Sequelize(process.env.DATABASE, 'root', process.env.PASSWORD, { 
+  host: process.env.HOST,
+  dialect: 'mysql',
+  logging: false
 });
-
-// const db = new Sequelize('yogalyze', 'root', '', { 
-//   host: 'localhost',
-//   dialect: 'mysql'
-// });
 
 export default db;
