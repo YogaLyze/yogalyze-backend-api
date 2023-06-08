@@ -18,7 +18,7 @@ Headers:
 Request Body: 
 ```json
 {
-  "date_of_birth": 2000-01-01,
+  "date_of_birth": "2000-01-01",
   "gender": "Male",
   "height": 165.0,
   "weight": 60.5
