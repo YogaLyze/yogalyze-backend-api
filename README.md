@@ -1,6 +1,6 @@
 ## YogaLyze API Documentation
 
-We use **NodeJS** using the **Express Framework** to create the APIs and deploy it to **Google Cloud Platform** by using **Google App Engine** for communication with **Mobile Development**. We also use **Identity Platform** with **Firebase Auth** for User authentication and authorization based on User ID Token. The database will stored user's history and profile in **Cloud SQL**. For each URL that can be used will be explained below.
+We use **NodeJS** using the **Express Framework** to create the APIs and deploy it to **Google Cloud Platform** by using **Google Cloud Run** for communication with **Mobile Development**. We also use **Identity Platform** with **Firebase Auth** for User authentication and authorization based on User ID Token. The database will stored user's history and profile in **Cloud SQL**. For each URL that can be used will be explained below.
 
 ### Create / Update User Profile 
 
